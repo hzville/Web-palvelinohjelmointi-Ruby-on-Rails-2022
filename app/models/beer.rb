@@ -7,4 +7,8 @@ class Beer < ApplicationRecord
         float_number = result/ratings.count.to_f.truncate(1)
         float_number.truncate(1)
     end
+
+    def to_s
+        name + ", " + brewery.name
+    end
 end
