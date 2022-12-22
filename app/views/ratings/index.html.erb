@@ -1,5 +1,6 @@
 <h2> List of ratings </h2>
 <p> Total ratings: <%= @ratings.count %> </p>
+<p> <%= link_to "Create new rating", ratings_new_path%>
 <div id="ratings">
     <ul>
         <% @ratings.each do |rating| %>
