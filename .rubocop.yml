@@ -69,3 +69,8 @@ Naming/MethodParameterName:
 
 Metrics/BlockLength:
   Enabled: false
+
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: False
+  Max: 15
