@@ -11,14 +11,20 @@
   <h3> ratings </h3>
   <ul>
     <% @user.ratings.each do |rating| %>
-      <li> <%= rating %> <%= link_to 'Delete', rating_path(rating.id), data: { "turbo-method": :delete} %> </li>
+      <li> <%= rating %>
+        <% if @user == current_user %>
+          <%= link_to 'Delete', rating_path(rating.id), data: { "turbo-method": :delete} %> 
+        <% end %>    
+      </li>
     <% end %>
   </ul>
 </div>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %>
+    <p> <%= button_to "Destroy this user", @user, method: :delete %> </p>
+  <% end %>
+  <p><%= link_to "Back to users", users_path %></p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
 </div>
