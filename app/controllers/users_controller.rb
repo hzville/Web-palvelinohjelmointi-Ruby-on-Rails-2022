@@ -57,7 +57,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user == current_user
         if @user.destroy
-          format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
+          session[:user_id] = nil
+          format.html { redirect_to :signin, notice: "User was successfully deleted." }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit, status: :unprocessable_entity }
