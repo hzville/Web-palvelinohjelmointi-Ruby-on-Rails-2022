@@ -25,4 +25,16 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  it 'Ratings page shows ratings and count' do
+    user2= FactoryBot.create :user, username: 'testuser', password: 'password1A', password_confirmation: 'password1A'
+    FactoryBot.create :rating, score: 15, user: user2
+    FactoryBot.create :rating, score: 35, user: user2
+    FactoryBot.create :rating, score: 45, user: user2
+    visit ratings_path
+    expect(page).to have_content 'Total ratings: 3'
+    expect(page).to have_content '15 testuser'
+    expect(page).to have_content '35 testuser'
+    expect(page).to have_content '45 testuser'
+  end
 end
